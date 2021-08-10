@@ -3,6 +3,9 @@ const router = express.Router();
 const passport = require("passport");
 const { getRedirection } = require("../controllers/authController");
 
+// @Route ==> /v1/dakshya/login/facebook
+// @Method ==> GET
+// @Type ==> Public
 router.get(
   "/login/facebook",
   passport.authenticate("facebook", {
@@ -10,11 +13,19 @@ router.get(
   })
 );
 
+// @Route ==> /v1/dakshya/facebook/callback
+// @Method ==> GET
+// @Type ==> Public
+
 router.get(
   "/facebook/callback",
   passport.authenticate("facebook", { failureRedirect: "/login" }),
   getRedirection
 );
+
+// @Route ==> /v1/dakshya/login/google
+// @Method ==> GET
+// @Type ==> Public
 
 router.get(
   "/login/google",
@@ -22,6 +33,10 @@ router.get(
     scope: ["email", "profile"],
   })
 );
+
+// @Route ==> /v1/dakshya/google/callback
+// @Method ==> GET
+// @Type ==> Public
 
 router.get(
   "/google/callback",

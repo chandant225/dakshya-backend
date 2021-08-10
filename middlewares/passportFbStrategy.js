@@ -9,7 +9,7 @@ module.exports = () => {
       {
         clientID: process.env.FACEBOOK_APP_ID,
         clientSecret: process.env.FACEBOOK_APP_SECRET,
-        callbackURL: "http://localhost:4040/facebook/callback",
+        callbackURL: "http://localhost:4040/v1/dakshyashop/facebook/callback",
         profile: [
           "id",
           "displayName",
