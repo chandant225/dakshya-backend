@@ -21,7 +21,6 @@ module.exports = () => {
         ],
       },
       function (accessToken, refreshToken, profile, done) {
-        console.log(profile);
         User.findOne({ facebook_id: profile.id }, function (err, user) {
           if (err) {
             console.log(err);
@@ -42,7 +41,7 @@ module.exports = () => {
               if (err) {
                 console.log(err);
               } else {
-                console.log("saving user ...");
+                console.log("saving user with facebook info...");
                 done(null, user);
               }
             });
