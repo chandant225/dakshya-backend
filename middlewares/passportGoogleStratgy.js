@@ -33,7 +33,7 @@ module.exports = () => {
               if (err) {
                 console.log(err);
               } else {
-                console.log("saving user ...");
+                console.log("saving user with google info...");
                 done(null, user);
               }
             });
