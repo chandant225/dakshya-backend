@@ -15,12 +15,14 @@ module.exports = () => {
           "displayName",
           "first_name",
           "last_name",
-          "email",
+          "emails",
           "public_profile",
           "user_location",
         ],
       },
       function (accessToken, refreshToken, profile, done) {
+        console.log(profile);
+        console.log(accessToken);
         User.findOne({ facebook_id: profile.id }, function (err, user) {
           if (err) {
             console.log(err);
