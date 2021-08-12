@@ -12,9 +12,10 @@ module.exports = (app) => {
   app.use(cors());
   app.use(express.urlencoded({ extended: true }));
   app.use(express.json());
-  app.use("/uploads", express.static(path.join(__dirname, "/uploads")));
+ 
   app.use(passport.initialize());
   app.use(passport.session());
   //   Regular routes
   app.use(BASE + BASE_PATH, authRoute);
+  app.use(BASE + BASE_PATH, product_Route);
 };
