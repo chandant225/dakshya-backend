@@ -14,7 +14,13 @@ const productSchema = new mongoose.Schema(
       type: Number,
       required: true,
     },
-    image: [Object],
+    mark_price: {
+      type: Number,
+    },
+    discount: {
+      type: Number,
+    },
+    images: [Object],
   },
   { timestamps: true }
 );

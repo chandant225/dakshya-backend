@@ -10,6 +10,16 @@ const get_product = (req,res) => {
 }
 
 
+const get_Product = (req, res) => {
+  Product.find()
+    .then((produdtData) => {
+      res.status(200).json({ produdtData });
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+};
+
 const add_Product = (req, res) => {
   let filesArray = [];
   req.files.forEach((element) => {
@@ -21,12 +31,14 @@ const add_Product = (req, res) => {
     };
     filesArray.push(file);
   });
-
+  const { mark_price, discount } = req.body;
   const Addproduct = new Product({
     category: req.body.category,
     name: req.body.name,
-    price: req.body.price,
-    image: filesArray,
+    mark_price: req.body.mark_price,
+    discount: req.body.discount,
+    price: mark_price - (discount / 100) * mark_price,
+    images: filesArray,
   });
   Addproduct.save()
     .then((issaved) => {
