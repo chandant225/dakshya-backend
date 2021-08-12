@@ -1,5 +1,14 @@
 const Category = require("../models/category_Schema");
 const Product = require("../models/product_Schema");
+const get_product = (req,res) => {
+    Product.find()
+    .then((productData) => {
+        res.status(200).json({productData})
+    }).catch((err) =>{
+        console.log(err)
+    })
+}
+
 
 const add_Product = (req, res) => {
   let filesArray = [];
@@ -57,4 +66,5 @@ module.exports = {
   add_Product,
   add_Categories,
   get_categories,
+  get_product,
 };
