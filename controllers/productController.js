@@ -1,14 +1,6 @@
 const Category = require("../models/category_Schema");
 const Product = require("../models/product_Schema");
-const get_product = (req, res) => {
-  Product.find()
-    .then((productData) => {
-      res.status(200).json({ productData });
-    })
-    .catch((err) => {
-      console.log(err);
-    });
-};
+
 
 const get_Product = (req, res) => {
   Product.find()
@@ -75,7 +67,30 @@ const get_categories = (req, res) => {
 };
 
 const get_single_product = (req, res) => {
-  Product.findOne({ name: req.body.slug })
+   var {title} = req.params
+  Product.findOne({ name: title})
+    .then((isfound) => {
+      res.status(200).json({ data: isfound });
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+};
+
+const get_category_desc = (req, res) => {
+  var { category_id } = req.params;
+  Category.findOne({ _id: category_id })
+    .then((isfound) => {
+      res.status(200).json({ data: isfound });
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+};
+
+const get_related_products= (req, res) => {
+  var { category_id } = req.params;
+  Product.find({ category: category_id })
     .then((isfound) => {
       res.status(200).json({ data: isfound });
     })
@@ -90,4 +105,6 @@ module.exports = {
   get_categories,
   get_Product,
   get_single_product,
+  get_category_desc,
+  get_related_products,
 };
