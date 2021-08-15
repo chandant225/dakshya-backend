@@ -31,6 +31,7 @@ const add_Product = (req, res) => {
     discount: req.body.discount,
     price: mark_price - (discount / 100) * mark_price,
     images: filesArray,
+    description:req.body.description
   });
   Addproduct.save()
     .then((issaved) => {
