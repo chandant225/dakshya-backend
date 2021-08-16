@@ -7,6 +7,7 @@ const Constants = require("../constants/Constants");
 const product_Route = require("../routes/productRoute");
 const authRoute = require("../routes/authRoute");
 const reviewRoute = require("../routes/reviewRoute");
+const paymentRoute = require("../routes/paymentRoute");
 
 module.exports = (app) => {
   const { BASE, BASE_PATH } = Constants;
@@ -20,4 +21,5 @@ module.exports = (app) => {
   app.use(BASE + BASE_PATH, authRoute);
   app.use(BASE + BASE_PATH, product_Route);
   app.use(BASE + BASE_PATH, reviewRoute);
+  app.use(BASE + BASE_PATH, paymentRoute);
 };
