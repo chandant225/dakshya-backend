@@ -22,7 +22,9 @@ const getRedirection = async (req, res) => {
         // res.session.user = user;
         res.cookie("token", token);
         res.cookie("user", user);
-        res.redirect("http://localhost:3000/checkout?su=verified_success");
+        res.redirect(
+          `${process.env.FRONTEND_URL}/checkout?su=verified_success`
+        );
       }
     );
   } catch (err) {
