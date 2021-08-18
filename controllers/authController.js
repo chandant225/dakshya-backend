@@ -21,14 +21,10 @@ const getRedirection = async (req, res, next) => {
         // req.session.token = token;
         // res.session.user = user;
         res.cookie("token", token, {
-          domain: process.env.FRONTEND_URL,
-          path: "/checkout",
-          secure: true,
+          path: "/",
         });
         res.cookie("user", user, {
-          domain: process.env.FRONTEND_URL,
-          path: "/checkout",
-          secure: true,
+          path: "/",
         });
         res.redirect(
           `${process.env.FRONTEND_URL}/checkout?su=verified_success`
