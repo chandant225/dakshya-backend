@@ -8,13 +8,14 @@ const product_Route = require("../routes/productRoute");
 const authRoute = require("../routes/authRoute");
 const reviewRoute = require("../routes/reviewRoute");
 const paymentRoute = require("../routes/paymentRoute");
+const cookieParser = require("cookie-parser");
 
 module.exports = (app) => {
   const { BASE, BASE_PATH } = Constants;
   app.use(cors());
   app.use(express.urlencoded({ extended: true }));
   app.use(express.json());
-
+  app.use(cookieParser());
   app.use(passport.initialize());
   app.use(passport.session());
   //   Regular routes
