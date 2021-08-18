@@ -7,6 +7,8 @@ const {
   get_single_product,
   get_category_desc,
   get_related_products,
+  edit_product,
+  post_edit_product,
 } = require("../controllers/productController");
 const router = express.Router();
 const { upload } = require("../helper/product_fileHelper");
@@ -18,5 +20,7 @@ router.get("/get_products", get_Product);
 router.get("/get_single_product/:title", get_single_product);
 router.get("/get_category_desc/:category_id", get_category_desc);
 router.get("/products/related/:category_id", get_related_products);
+router.get("/product/edit/:product_id", edit_product);
+router.post("/product/update/:product_id", post_edit_product);
 
 module.exports = router;
