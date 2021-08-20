@@ -20,6 +20,9 @@ const productSchema = new mongoose.Schema(
     discount: {
       type: Number,
     },
+    description: {
+      type: String,
+    },
     images: [Object],
     description: {
       type: String,

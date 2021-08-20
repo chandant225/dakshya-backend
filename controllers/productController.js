@@ -1,9 +1,9 @@
 const Category = require("../models/category_Schema");
 const Product = require("../models/product_Schema");
 
-
 const get_Product = (req, res) => {
   Product.find()
+    .populate("category", "_id name")
     .then((productData) => {
       res.status(200).json({ productData });
     })
@@ -30,12 +30,51 @@ const add_Product = (req, res) => {
     mark_price: req.body.mark_price,
     discount: req.body.discount,
     price: mark_price - (discount / 100) * mark_price,
+    description: req.body.description,
     images: filesArray,
     description:req.body.description
   });
   Addproduct.save()
     .then((issaved) => {
       res.json({ message: "new product uploaded successfully" });
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+};
+
+const edit_product = (req, res) => {
+  const { product_id } = req.params;
+
+  Product.findOne({ _id: product_id })
+    .populate("category", "_id name")
+    .then((isFound) => {
+      res.status(200).json({ productData: isFound });
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+};
+const post_edit_product = (req, res) => {
+  const { product_id } = req.params;
+  var myquery = { _id: product_id };
+  const { mark_price, discount } = req.body;
+  var newvalue = {
+    $set: {
+      name: req.body.name,
+      description: req.body.description,
+      mark_price: req.body.mark_price,
+      discount: req.body.discount,
+      category: req.body.category,
+      price: mark_price - (discount / 100) * mark_price,
+    },
+  };
+
+  Product.updateOne(myquery, newvalue, { new: true })
+    .then((isUpdated) => {
+      res
+        .status(200)
+        .json({ message: "product has been updated successfully" });
     })
     .catch((err) => {
       console.log(err);
@@ -68,8 +107,8 @@ const get_categories = (req, res) => {
 };
 
 const get_single_product = (req, res) => {
-   var {title} = req.params
-  Product.findOne({ name: title})
+  var { title } = req.params;
+  Product.findOne({ name: title })
     .then((isfound) => {
       res.status(200).json({ data: isfound });
     })
@@ -89,7 +128,7 @@ const get_category_desc = (req, res) => {
     });
 };
 
-const get_related_products= (req, res) => {
+const get_related_products = (req, res) => {
   var { category_id } = req.params;
   Product.find({ category: category_id })
     .then((isfound) => {
@@ -108,4 +147,6 @@ module.exports = {
   get_single_product,
   get_category_desc,
   get_related_products,
+  edit_product,
+  post_edit_product,
 };
