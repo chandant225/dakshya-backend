@@ -24,8 +24,10 @@ const productSchema = new mongoose.Schema(
       type: String,
     },
     images: [Object],
-    description: {
-      type: String,
+    
+    is_collection: {
+      type: Boolean,
+      default:false
     },
   },
   { timestamps: true }

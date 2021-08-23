@@ -32,8 +32,9 @@ const add_Product = (req, res) => {
     price: mark_price - (discount / 100) * mark_price,
     description: req.body.description,
     images: filesArray,
-    description:req.body.description
+    is_collection:req.body.is_collection
   });
+  console.log("add product", Addproduct);
   Addproduct.save()
     .then((issaved) => {
       res.json({ message: "new product uploaded successfully" });
@@ -67,6 +68,7 @@ const post_edit_product = (req, res) => {
       discount: req.body.discount,
       category: req.body.category,
       price: mark_price - (discount / 100) * mark_price,
+      is_collection:req.body.is_collection
     },
   };
 

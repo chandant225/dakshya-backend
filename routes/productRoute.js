@@ -9,6 +9,7 @@ const {
   get_related_products,
   edit_product,
   post_edit_product,
+  delete_product
 } = require("../controllers/productController");
 const router = express.Router();
 const { upload } = require("../helper/product_fileHelper");
