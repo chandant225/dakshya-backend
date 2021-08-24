@@ -32,7 +32,9 @@ const add_Product = (req, res) => {
     price: mark_price - (discount / 100) * mark_price,
     description: req.body.description,
     images: filesArray,
+    is_collection:req.body.is_collection
   });
+  console.log("add product", Addproduct);
   Addproduct.save()
     .then((issaved) => {
       res.json({ message: "new product uploaded successfully" });
@@ -66,6 +68,7 @@ const post_edit_product = (req, res) => {
       discount: req.body.discount,
       category: req.body.category,
       price: mark_price - (discount / 100) * mark_price,
+      is_collection:req.body.is_collection
     },
   };
 
@@ -138,6 +141,16 @@ const get_related_products = (req, res) => {
     });
 };
 
+const delete_product =(req,res)=>{
+    var { product_id } = req.params;
+    
+    Product.deleteOne({ _id: product_id }).then(()=>{
+        res.status(200).json({ message: "Product is deleted" });
+    }).catch((err)=>{
+        console.log(err)
+    });
+}
+
 module.exports = {
   add_Product,
   add_Categories,
@@ -146,6 +159,7 @@ module.exports = {
   get_single_product,
   get_category_desc,
   get_related_products,
+  delete_product,
   edit_product,
   post_edit_product,
 };
