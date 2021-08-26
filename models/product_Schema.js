@@ -20,14 +20,17 @@ const productSchema = new mongoose.Schema(
     discount: {
       type: Number,
     },
-    description: {
+    short_description: {
+      type: String,
+    },
+    long_description: {
       type: String,
     },
     images: [Object],
-    
+
     is_collection: {
       type: Boolean,
-      default:false
+      default: false,
     },
   },
   { timestamps: true }

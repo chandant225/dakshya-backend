@@ -1,10 +1,12 @@
 const Review = require("../models/review_Schema");
 
 const add_review = (req, res) => {
-  const { user, product, title, description, rating } = req.body;
+  const user = req.user;
+
+  const { productId, title, description, rating } = req.body;
   const reviewDetails = new Review({
-    user: user,
-    product: product,
+    user: user.uuid,
+    product: productId,
     title: title,
     description: description,
     rating: rating,
@@ -24,6 +26,7 @@ const add_review = (req, res) => {
 const get_review = (req, res) => {
   const { product_id } = req.params;
   Review.find({ product: product_id })
+    .populate("user", "name")
     .then((data) => {
       res.status(200).json({ data });
     })
