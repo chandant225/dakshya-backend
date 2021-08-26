@@ -1,7 +1,6 @@
 const Admin = require("../models/admin_Schema");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
-// const { JWT_SECRET_ADMIN } = require("../configs/configurations");
 
 const SignUp = (req, res) => {
   const {
@@ -76,7 +75,10 @@ const SignIn = (req, res) => {
         .compare(password, isadminfound.password)
         .then((ismatched) => {
           if (ismatched) {
-            const token = jwt.sign({ _id: isadminfound._id }, JWT_SECRET_ADMIN);
+            const token = jwt.sign(
+              { _id: isadminfound._id },
+              process.env.JWT_SECRET
+            );
             const { _id, name, email } = isadminfound;
             res
               .header("auth-token", token)
