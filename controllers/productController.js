@@ -153,18 +153,20 @@ const delete_product = (req, res) => {
     });
 };
 
-const search_product=(req, res)=>{
-    var { keywords } = req.params;
-    Product.find({
-      name: { $regex: ".*" + keywords + ".*" },
+const search_product = (req, res) => {
+  var { keywords } = req.params;
+  Product.find({
+    $text: {
+      $search: keywords,
+    },
+  })
+    .then((isfound) => {
+      res.status(200).json({ products: isfound });
     })
-      .then((isfound) => {
-        res.status(200).json({ products: isfound });
-      })
-      .catch((err) => {
-        console.log(err);
-      });;
-}
+    .catch((err) => {
+      console.log(err);
+    });
+};
 
 module.exports = {
   add_Product,
@@ -177,5 +179,5 @@ module.exports = {
   delete_product,
   edit_product,
   post_edit_product,
-  search_product
+  search_product,
 };
