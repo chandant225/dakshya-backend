@@ -1,7 +1,7 @@
 const jwt = require("jsonwebtoken");
 const { INTERNAL_SERVER } = require("../constants/Error");
 
-const getRedirection = async (req, res, next) => {
+const getRedirection = function async(req, res, next, redirect) {
   const user = req.user;
   try {
     //   Creates payload and sends token to user
@@ -27,11 +27,12 @@ const getRedirection = async (req, res, next) => {
           domain: process.env.DOMAIN,
         });
         res.redirect(
-          `${process.env.FRONTEND_URL}/checkout?su=verified_success`
+          redirect
+            ? `${process.env.FRONTEND_URL}/checkout?su=verified_success`
+            : `${process.env.FRONTEND_URL}/login?su=success`
         );
       }
     );
-    next();
   } catch (err) {
     console.log(err);
     res.status(500).json(INTERNAL_SERVER);
