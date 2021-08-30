@@ -4,7 +4,15 @@ const { Validator } = require("node-input-validator");
 
 const add_payment = (req, res) => {
 
-  const { user_id, order_id, ref_id, payment, cart , payment_method} = req.body;
+  const {
+    user_id,
+    order_id,
+    ref_id,
+    payment,
+    cart,
+    payment_method,
+    email,
+  } = req.body;
 
   const v = new Validator(req.body, {
     user_id: "required",
@@ -12,6 +20,7 @@ const add_payment = (req, res) => {
     ref_id: "required",
     payment: "required",
     cart: "required",
+    email:"required",
     payment_method: "required",
   });
 
@@ -28,6 +37,7 @@ const add_payment = (req, res) => {
         ref_id: ref_id,
         payment: payment,
         cart: cart,
+        email:email
         });
         
         AddPayment.save()
