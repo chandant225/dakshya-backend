@@ -30,8 +30,8 @@ const add_Product = (req, res) => {
     mark_price: req.body.mark_price,
     discount: req.body.discount,
     price: mark_price - (discount / 100) * mark_price,
-    short_description: req.body.short_description,
-    long_description: req.body.long_description,
+    summary: req.body.short_description,
+    description: req.body.long_description,
     images: filesArray,
     is_collection: req.body.is_collection,
   });
@@ -63,6 +63,7 @@ const post_edit_product = (req, res) => {
   var newvalue = {
     $set: {
       name: req.body.name,
+      summary: req.body.summary,
       description: req.body.description,
       mark_price: req.body.mark_price,
       discount: req.body.discount,
