@@ -20,10 +20,10 @@ const productSchema = new mongoose.Schema(
     discount: {
       type: Number,
     },
-    short_description: {
+    summary: {
       type: String,
     },
-    long_description: {
+    description: {
       type: String,
     },
     images: [Object],
