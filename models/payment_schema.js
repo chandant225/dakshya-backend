@@ -7,26 +7,29 @@ const paymentSchema = new Schema(
       type: mongoose.Schema.Types.ObjectId,
       ref: "user",
     },
-    order_id: 
-    {
-        type: String,
-        required:true
+    order_id: {
+      type: String,
+      required: true,
+    },
+    email: {
+      type: String,
+      required: true,
     },
     ref_id: {
-        type:String,
-        required:true
+      type: String,
+      required: true,
     },
     payment_method: {
-        type:String,
-        required:true
+      type: String,
+      required: true,
     },
-    payment: { 
-        type:{},
-        required:true
+    payment: {
+      type: {},
+      required: true,
     },
     cart: {
-        type: Array,
-        required:true
+      type: Array,
+      required: true,
     },
   },
   {
