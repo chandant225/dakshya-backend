@@ -67,9 +67,20 @@ const redeem_coupon = (req, res) => {
   });
 };
 
+const get_coupons = (req, res) => {
+  Coupon.find()
+    .then((isFound) => {
+      res.status(200).json({ coupons: isFound });
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+};
+
 
 
 module.exports = {
   add_coupon,
-  redeem_coupon
+  redeem_coupon,
+  get_coupons
 };
