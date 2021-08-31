@@ -52,10 +52,16 @@ const redeem_coupon = (req, res) => {
     } else {
       Coupon.findOne({ name: name, is_active:true })
         .then((isFound) => {
-          res.status(200).json({ coupon: isFound });
+            if(!isFound) throw  "Coupon not found";
+            res.status(200).json({
+                name:isFound.name,
+                isValid:true,
+                discount:isFound.discount
+            });
         })
         .catch((err) => {
           console.log(err);
+          res.status(404).json({err});
         });
     }
   });
