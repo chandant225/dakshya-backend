@@ -10,6 +10,7 @@ const reviewRoute = require("../routes/reviewRoute");
 const paymentRoute = require("../routes/paymentRoute");
 const adminRoute = require("../routes/adminRoute");
 const suscriberRoute = require("../routes/suscribeRoute");
+const couponRoute = require("../routes/couponRoute");
 const cookieParser = require("cookie-parser");
 
 module.exports = (app) => {
@@ -27,4 +28,5 @@ module.exports = (app) => {
   app.use(BASE + BASE_PATH, paymentRoute);
   app.use(BASE + BASE_PATH, adminRoute);
   app.use(BASE + BASE_PATH, suscriberRoute);
+  app.use(BASE + BASE_PATH, couponRoute);
 };
