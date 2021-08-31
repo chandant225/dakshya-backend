@@ -13,10 +13,10 @@ const SignUp = (req, res) => {
   if (!admin_name || !admin_email || !admin_password || !confirm_password) {
     errors.push({ msg: "please enter all the fields" });
   }
-  if (customer_password != confirm_password) {
+  if (admin_password != confirm_password) {
     errors.push({ msg: "passwords do not match" });
   }
-  if (customer_password.length < 6) {
+  if (admin_password.length < 6) {
     errors.push({ msg: "password must be atleast 6 characters" });
   }
   if (errors.length > 0) {
