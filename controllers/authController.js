@@ -14,7 +14,7 @@ const getRedirection = function async(req, res, next, redirect) {
       payload,
       process.env.JWT_SECRET,
       {
-        expiresIn: "1 days",
+        expiresIn: "3 days",
       },
       (err, token) => {
         if (err) throw err;

@@ -11,6 +11,8 @@ const paymentRoute = require("../routes/paymentRoute");
 const adminRoute = require("../routes/adminRoute");
 const suscriberRoute = require("../routes/suscribeRoute");
 const couponRoute = require("../routes/couponRoute");
+const VerifyToken = require('../routes/verfifyToken');
+
 const cookieParser = require("cookie-parser");
 
 module.exports = (app) => {
@@ -29,4 +31,5 @@ module.exports = (app) => {
   app.use(BASE + BASE_PATH, adminRoute);
   app.use(BASE + BASE_PATH, suscriberRoute);
   app.use(BASE + BASE_PATH, couponRoute);
+  app.use(BASE + BASE_PATH, VerifyToken);
 };
