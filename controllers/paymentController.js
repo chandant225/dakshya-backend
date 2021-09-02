@@ -51,8 +51,16 @@ const add_payment = (req, res) => {
     });
 };
 
+const list_payment = (req, res) => {
+  Payment.find()
+  .populate("user_id","_id name")
+  .then((paymentData)=> res.status(200).json({paymentData}))
+  .catch((err) => console.log(err))
+}
+
 
 
 module.exports = {
   add_payment,
+  list_payment
 };
