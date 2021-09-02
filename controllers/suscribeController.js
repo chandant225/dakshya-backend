@@ -26,6 +26,27 @@ const add_suscriber = (req, res) => {
   });
 };
 
+const getSubscriber = (req, res) => {
+  Suscriber.find()
+  .then((suscriberdata) => {
+    res.status(200).json({suscriberdata})
+  }).catch((err) => {
+    console.log(err)
+  })
+}
+
+const deleteSubscriber = (req, res) => {
+  const { Sub_id } = req.params;
+  Suscriber.findByIdAndDelete({_id: Sub_id})
+  .then(()=> {
+    res.status(200).json({ message: "Subscriber has been deleted successfully"})
+  }).catch((err) => {
+    console.log(err)
+  })
+}
+
 module.exports = {
   add_suscriber,
+  getSubscriber,
+  deleteSubscriber
 };
