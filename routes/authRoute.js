@@ -22,7 +22,10 @@ router.get(
 router.get(
   "/facebook/callback",
   passport.authenticate("facebook", { failureRedirect: "/login" }),
-  getRedirection
+  (req, res, next) => {
+    console.log(redirect, "===================== from callback");
+    getRedirection(req, res, next, redirect);
+  }
 );
 
 // @Route ==> /v1/dakshya/login/google
