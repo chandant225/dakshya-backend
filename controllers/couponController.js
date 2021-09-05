@@ -3,16 +3,12 @@ const { Validator } = require("node-input-validator");
 
 const add_coupon = (req, res) => {
 
-  const {
-    coupon,
-    couponDiscount,
-    active,
-  } = req.body;
+  const { name, couponDiscount, is_active } = req.body;
 
   const v = new Validator(req.body, {
-    coupon: "required",
+    name: "required",
     couponDiscount: "required",
-    active: "required",
+    is_active: "required",
   });
 
   v.check().then((matched) => {
@@ -22,9 +18,9 @@ const add_coupon = (req, res) => {
     else
     {
         const AddCoupon = new Coupon({
-        name: coupon,
-        discount: couponDiscount,
-        is_active: active
+          name: name,
+          discount: couponDiscount,
+          is_active: is_active,
         });
         
         AddCoupon.save()
