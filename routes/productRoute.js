@@ -23,7 +23,7 @@ router.get("/get_products", get_Product);
 router.get("/get_single_product/:title", get_single_product);
 router.get("/get_category_desc/:category_id", get_category_desc);
 router.get("/products/related/:category_id", get_related_products);
-router.get("/product/delete/:product_id",authenticate, delete_product);
+router.post("/product/delete/:product_id",authenticate, delete_product);
 router.get("/product/edit/:product_id",authenticate, edit_product);
 router.post("/product/update/:product_id",authenticate, post_edit_product);
 router.get("/product/search/:keywords", search_product);

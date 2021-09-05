@@ -143,9 +143,9 @@ const get_related_products = (req, res) => {
 };
 
 const delete_product = (req, res) => {
-  var { product_id } = req.params;
+  const { product_id } = req.params;
 
-  Product.deleteOne({ _id: product_id })
+  Product.findByIdAndDelete({_id: product_id })
     .then(() => {
       res.status(200).json({ message: "Product is deleted" });
     })
