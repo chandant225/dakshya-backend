@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      body {
+        width: 50%;
+
+        margin: auto;
+      }
+
+      .header {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .details {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .order_summary {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .price-wrapper {
+        width: 50%;
+        float: right;
+      }
+
+      .price {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .table {
+        width: 100%;
+      }
+
+      .table th {
+        text-align: left;
+      }
+
+      .table td {
+        padding: 5px;
+        text-align: left;
+      }
+
+      .price-table {
+        width: 45%;
+        float: right;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="header">
+      <div>
+        <h1>Dakshya Nepal</h1>
+        <p style="font-size: 20px">Thank you for your purchase!</p>
+      </div>
+      <p>Order #1011</p>
+    </div>
+    <hr />
+
+    <div class="details">
+      <div>
+        <h3>Bill To:</h3>
+        <h4>Anup Devkota</h4>
+        <p>TG Complex, Koteshwor, Kathmandu, Province 3</p>
+      </div>
+      <div>
+        <h3>Ship To:</h3>
+        <h4>Anup Devkota</h4>
+        <p>TG Complex, Koteshwor, Kathmandu, Province 3</p>
+      </div>
+      <div>
+        <h3>Payment Method</h3>
+        <p>Cash on Delivery</p>
+
+        <h3>Date of Purchase</h3>
+        <p>26/08/2021</p>
+      </div>
+    </div>
+    <hr />
+    <div>
+      <h2>Order Summary</h2>
+
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Book name</th>
+            <th>quantity</th>
+            <th>price</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% cart.forEach(function(item){ %>
+          <tr>
+            <td><%= item.title %></td>
+            <td>-</td>
+            <td>Rs. <%= item.price %></td>
+          </tr>
+          <% }); %>
+        </tbody>
+      </table>
+      <hr />
+      <div class="price-table">
+        <table style="width: 100%">
+          <tr>
+            <td>Sub-total</td>
+            <td>Rs. <%= total %></td>
+          </tr>
+          <tr>
+            <td>Shipping</td>
+            <td>Rs. 0</td>
+          </tr>
+        </table>
+        <hr />
+        <table style="width: 100%; float: right">
+          <tr style="text-align: left">
+            <td>Total-price</td>
+            <td>Rs. <%= total %></td>
+          </tr>
+        </table>
+      </div>
+    </div>
+  </body>
+</html>
