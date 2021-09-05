@@ -78,20 +78,25 @@
     <div class="details">
       <div>
         <h3>Bill To:</h3>
-        <h4>Anup Devkota</h4>
-        <p>TG Complex, Koteshwor, Kathmandu, Province 3</p>
+        <h4><%= namebilling %></h4>
+        <p>
+          <%= `${addressBilling}, ${cityBilling}, Province ${statebilling}` %>
+        </p>
       </div>
       <div>
         <h3>Ship To:</h3>
-        <h4>Anup Devkota</h4>
-        <p>TG Complex, Koteshwor, Kathmandu, Province 3</p>
+        <h4><%= nameShipping %></h4>
+        <p>
+          <%= `${addressShipping}, ${cityShipping}, Province ${stateShipping}`
+          %>
+        </p>
       </div>
       <div>
         <h3>Payment Method</h3>
-        <p>Cash on Delivery</p>
+        <p><%= payment_method %></p>
 
         <h3>Date of Purchase</h3>
-        <p>26/08/2021</p>
+        <p><%= dateOfPurchase %></p>
       </div>
     </div>
     <hr />
