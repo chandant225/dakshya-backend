@@ -16,7 +16,7 @@ const add_review = (req, res) => {
     .then((isSaved) => {
       res.status(200).json({
         isSaved,
-        message: "your review has been posted successfully, Thank You!",
+        message: "Your review has been posted successfully, Thank You!",
       });
     })
     .catch((err) => {
