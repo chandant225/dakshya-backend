@@ -17,7 +17,7 @@ const { upload } = require("../helper/product_fileHelper");
 const { authenticate } = require("../configs/verifytoken");
 
 router.post("/add_product", authenticate, upload.array("images"), add_Product);
-router.post("/add_category", authenticate, add_Categories);
+router.post("/add_category", add_Categories);
 router.get("/categories", get_categories);
 router.get("/get_products", get_Product);
 router.get("/get_single_product/:title", get_single_product);

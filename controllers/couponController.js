@@ -72,10 +72,24 @@ const get_coupons = (req, res) => {
     });
 };
 
+const delete_coupon = (req, res) => {
+  const { coupon_id } = req.params;
+  Coupon.findByIdAndDelete({ _id: coupon_id })
+    .then(() => {
+      res
+        .status(200)
+        .json({ message: "Coupon has been deleted successfully" });
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+};
+
 
 
 module.exports = {
   add_coupon,
+  delete_coupon,
   redeem_coupon,
   get_coupons
 };
