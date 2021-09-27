@@ -3,8 +3,8 @@ const nodemailer = require("nodemailer");
 const transporter = nodemailer.createTransport({
   service: "SendinBlue",
   auth: {
-    user: "nabin.thapa@dakshyanepal.com",
-    pass: "PkSvVyRhAYJUpzxT",
+    user: "info@dakshyanepal.com",
+    pass: "CGrNLBfTjhWcPR3t",
   },
 });
 
