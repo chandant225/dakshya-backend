@@ -36,6 +36,10 @@ const orderSchema = new mongoose.Schema(
     phone: {
         type: String,
         required: true
+    },
+    userId: {
+      type: String,
+      required: true
     }
   },
 
