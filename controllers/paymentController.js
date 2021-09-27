@@ -1,4 +1,5 @@
 const Payment = require("../models/payment_schema");
+const Order = require("../models/order_Schema");
 const { Validator } = require("node-input-validator");
 const { EmailUtils } = require("../utils/EmailSenderUtil");
 const moment = require("moment");
@@ -21,6 +22,7 @@ const add_payment = async (req, res) => {
     stateBilling,
     nameBilling,
     nameShipping,
+    phone
   } = req.body;
   // data for email
   const data = {
@@ -37,6 +39,7 @@ const add_payment = async (req, res) => {
     stateBilling,
     nameBilling,
     nameShipping,
+    phone,
     dateOfPurchase: moment(Date.now()).format("MMM-DD-YYYY"),
   };
   const v = new Validator(req.body, {
@@ -63,13 +66,24 @@ const add_payment = async (req, res) => {
         email: email,
       });
 
-      AddPayment.save()
-        .then(async (issaved) => {
-          res.json({ message: "new payment added successfully" });
+      const AddOrder = new Order({
+        cityShipping: cityShipping,
+        cityBilling: cityBilling,
+        addressBilling: addressBilling,
+        addressShipping: addressShipping,
+        stateShipping: stateShipping,
+        stateBilling: stateBilling,
+        nameBilling: nameBilling,
+        nameShipping: nameShipping,
+        phone: phone
+      })
+        AddOrder.save()
+        AddPayment.save().then(async() => {
           await EmailUtils.purchaseInvoice({ userEmail: email, data });
+          res.json({ message: "new payment added successfully" });
         })
         .catch((err) => {
-          console.log(err);
+          console.log(err, "from payment controller");
         });
     }
   });
