@@ -76,7 +76,7 @@ const add_payment = async (req, res) => {
         nameBilling: nameBilling,
         nameShipping: nameShipping,
         phone: phone,
-        user_id: user_id
+        userId: user_id
       })
         AddOrder.save()
         AddPayment.save().then(async() => {
