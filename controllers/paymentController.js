@@ -64,6 +64,9 @@ const add_payment = async (req, res) => {
         payment: payment,
         cart: cart,
         email: email,
+        total: total,
+        phone: phone,
+        address: addressShipping
       });
 
       const AddOrder = new Order({
