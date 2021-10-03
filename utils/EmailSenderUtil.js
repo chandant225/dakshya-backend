@@ -39,6 +39,7 @@ const EmailUtils = {
           nameBilling: data.nameBilling,
           nameShipping: data.nameShipping,
           dateOfPurchase: data.dateOfPurchase,
+          deliverCharge: data.deliverCharge,
         },
       });
     } catch (e) {
