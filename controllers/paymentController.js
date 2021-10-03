@@ -22,7 +22,8 @@ const add_payment = async (req, res) => {
     stateBilling,
     nameBilling,
     nameShipping,
-    phone
+    phone,
+    deliverCharge,
   } = req.body;
   // data for email
   const data = {
@@ -41,7 +42,9 @@ const add_payment = async (req, res) => {
     nameShipping,
     phone,
     dateOfPurchase: moment(Date.now()).format("MMM-DD-YYYY"),
+    deliverCharge,
   };
+  console.log(data);
   const v = new Validator(req.body, {
     user_id: "required",
     order_id: "required",
@@ -79,10 +82,12 @@ const add_payment = async (req, res) => {
         nameBilling: nameBilling,
         nameShipping: nameShipping,
         phone: phone,
-        userId: user_id
-      })
-        AddOrder.save()
-        AddPayment.save().then(async() => {
+        userId: user_id,
+        deliveryCharge: deliverCharge,
+      });
+      AddOrder.save();
+      AddPayment.save()
+        .then(async () => {
           await EmailUtils.purchaseInvoice({ userEmail: email, data });
           res.json({ message: "new payment added successfully" });
         })

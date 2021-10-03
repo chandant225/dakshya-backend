@@ -14,33 +14,37 @@ const orderSchema = new mongoose.Schema(
       required: true,
     },
     addressShipping: {
-        type: String,
-        required: true
+      type: String,
+      required: true,
     },
     stateShipping: {
-        type: String,
-        required: true
+      type: String,
+      required: true,
     },
     stateBilling: {
-        type: String,
-        required: true
+      type: String,
+      required: true,
     },
     nameBilling: {
-        type: String,
-        required: true
+      type: String,
+      required: true,
     },
     nameShipping: {
-        type: String,
-        required: true
+      type: String,
+      required: true,
     },
     phone: {
-        type: String,
-        required: true
+      type: String,
+      required: true,
     },
     userId: {
       type: String,
-      required: true
-    }
+      required: true,
+    },
+    deliveryCharge: {
+      type: Number,
+      required: true,
+    },
   },
 
   {
