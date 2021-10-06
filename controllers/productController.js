@@ -18,12 +18,12 @@ const add_Product = (req, res) => {
     const file = {
       fileName: element.filename,
       filePath: element.path,
-      fileType: element.mimetype,
+      fileType: element.mimetype
       // fileSize: fileSizeFormatter(element.size, 2),
     };
     filesArray.push(file);
   });
-  const { mark_price, discount } = req.body;
+  const { mark_price, discount} = req.body;
   const Addproduct = new Product({
     category: req.body.category,
     name: req.body.name,
@@ -34,6 +34,7 @@ const add_Product = (req, res) => {
     description: req.body.long_description,
     images: filesArray,
     is_collection: req.body.is_collection,
+    is_offer:req.body.is_offer,
   });
   Addproduct.save()
     .then((issaved) => {
@@ -70,6 +71,7 @@ const post_edit_product = (req, res) => {
       category: req.body.category,
       price: mark_price - (discount / 100) * mark_price,
       is_collection: req.body.is_collection,
+      is_offer: req.body.is_offer
     },
   };
 
@@ -142,6 +144,17 @@ const get_related_products = (req, res) => {
     });
 };
 
+const get_products_on_offer = (req, res) => {
+
+  Product.find({ is_offer: true })
+    .then((isfound) => {
+      res.status(200).json({ data: isfound });
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+};
+
 const delete_product = (req, res) => {
   const { product_id } = req.params;
 
@@ -181,4 +194,5 @@ module.exports = {
   edit_product,
   post_edit_product,
   search_product,
+  get_products_on_offer
 };
