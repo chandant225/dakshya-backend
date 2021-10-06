@@ -32,6 +32,10 @@ const productSchema = new mongoose.Schema(
       type: Boolean,
       default: false,
     },
+    is_offer: {
+      type: Boolean,
+      default: false,
+    },
   },
   { timestamps: true }
 );
